@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboardga kirish</title>
+
+    <link rel="stylesheet" href="{% static 'styles/general.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/login.css' %}">
+
+    <script src="{% static 'scripts/login.js' %}" defer></script>
+</head>
+<body>
+    <div class="wrapper">
+        <form>
+            {% csrf_token %}
+            <h1>Dashboardga kirish</h1>
+            <p class="error">Login yoki parol xato</p>
+            <input type="text" name="username" placeholder="Login">
+            <input type="password" name="password" placeholder="Parol">
+            <input type="submit" value="Kirish">
+        </form>
+    </div>
+</body>
+</html>
