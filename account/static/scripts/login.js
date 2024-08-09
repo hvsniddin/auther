@@ -21,7 +21,8 @@ form.onsubmit = async (event) => {
         },
         body: JSON.stringify({
             username: username.value,
-            password: password.value
+            password: password.value,
+            requested: requestedDashboard
         })
     });
 
@@ -32,10 +33,8 @@ form.onsubmit = async (event) => {
     }
 
     const data = await resp.json();
-    console.log(data);
 
-    if (!data.ott) return;
-    if (requestedDashboard!==data.dashboard) {
+    if (!data.ott) {
         error.style.display = 'block';
         form.dataset.submitting = "false";
         return
