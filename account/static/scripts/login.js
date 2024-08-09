@@ -6,6 +6,10 @@ const error = document.querySelector('p.error');
 form.onsubmit = async (event) => {
     event.preventDefault();
 
+    const url = new URL(window.location.href);
+    const requestedDashboard = url.searchParams.get('requested');
+    console.log(requestedDashboard);
+
     if (form.dataset.submitting=='true') return;
     form.dataset.submitting = 'true';
     error.style.display = 'none';
@@ -28,6 +32,14 @@ form.onsubmit = async (event) => {
     }
 
     const data = await resp.json();
+    console.log(data);
+
     if (!data.ott) return;
-    window.location.replace(`http://127.0.0.1:8001/?ott=${data.ott}`)
+    if (requestedDashboard!==data.dashboard) {
+        error.style.display = 'block';
+        form.dataset.submitting = "false";
+        return
+    }
+    
+    window.location.replace(`http://${requestedDashboard ? requestedDashboard : data.dashboard}.thewolfanalytics.uz/?ott=${data.ott}`)
 }

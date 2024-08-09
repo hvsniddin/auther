@@ -9,4 +9,4 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         refresh = self.get_token(self.user)
         ott=generate_ott()
         set_ott(ott, {'access': str(refresh.access_token), 'refresh': str(refresh)})
-        return {'ott': ott}
+        return {'ott': ott, 'dashboard':self.user.dashboard_id}
