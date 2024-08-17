@@ -6,6 +6,8 @@ services:
     volumes:
       - .:/app
       - static_volume:/app/static
+    depends_on:
+      - redis
   nginx:
     build: ./nginx
     container_name: nginx
@@ -15,6 +17,9 @@ services:
       - "80:80"
     depends_on:
       - web
+  redis:
+    image: redis
+    container_name: redis
 
 volumes:
   static_volume:
