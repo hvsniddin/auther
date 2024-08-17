@@ -33,7 +33,7 @@ def verify(r):
     """
     Verifies the token and matches the dashboard ids.
     """
-    dashboard_id = r.data.get('dashboard_id')
+    dashboard_id = r.get_host().split('.')[0]
     return Response(data={'ok':dashboard_id==r.user.dashboard_id})
 
 
